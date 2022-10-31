@@ -13,4 +13,5 @@
     - MVP(Model View Presenter)
     - MVVM(Model View View Model)
 
-                ![Nene Coding](https://user-images.githubusercontent.com/113314204/199116145-10148598-0c14-4a08-9777-1a1dd12e2184.gif)
+                
+      ![Nene Coding](https://user-images.githubusercontent.com/113314204/199116264-3d310794-0079-4672-89c9-d7e773cac734.gif)
