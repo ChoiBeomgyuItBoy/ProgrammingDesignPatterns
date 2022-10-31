@@ -14,4 +14,4 @@
     - MVVM(Model View View Model)
 
                 
-      ![Nene Coding](https://user-images.githubusercontent.com/113314204/199116264-3d310794-0079-4672-89c9-d7e773cac734.gif)
+     ![Nene Coding](https://user-images.githubusercontent.com/113314204/199116264-3d310794-0079-4672-89c9-d7e773cac734.gif)
