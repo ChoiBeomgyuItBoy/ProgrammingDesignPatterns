@@ -1,5 +1,5 @@
 # Programming Design Patterns
-- There are 6 common programming patterns built by experts to solve common problems.
+- There are 8 common programming patterns built by experts to solve common problems.
 
   - The programming patterns:
      - Observer Pattern
