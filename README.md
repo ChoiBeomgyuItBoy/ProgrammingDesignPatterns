@@ -1,7 +1,5 @@
 # Programming Design Patterns
 - There are 6 common programming patterns built by experts to solve common problems.
-
-  - The programming patterns:
     - Observer Pattern
     - Singleton Pattern
     - Finite State Machine and State Pattern
