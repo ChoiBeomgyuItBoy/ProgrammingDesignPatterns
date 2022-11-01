@@ -1,14 +1,14 @@
 # Programming Design Patterns
-- There are 8 common programming patterns built by experts to solve common problems.
+- There are 6 common programming patterns built by experts to solve common problems.
 
   - The programming patterns:
-     - Observer Pattern
+    - Observer Pattern
     - Singleton Pattern
     - Finite State Machine and State Pattern
     - Object Pooling
     - Strategy, Decorator and Composite Trinity
     
-  - The UI patterns:
+- The 3 common UI patterns:
     - MVC(Model View Controller)
     - MVP(Model View Presenter)
     - MVVM(Model View View Model)
