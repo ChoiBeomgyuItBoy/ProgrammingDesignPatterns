@@ -1,8 +1,11 @@
 using System.Collections;
+using UnityEngine.Events;
 using UnityEngine;
 
 public class Level : MonoBehaviour
 {
+    [SerializeField] UnityEvent onLevelUp;
+
     [SerializeField] int pointsPerLevel = 200;
 
     int experiencePoints = 0;
@@ -24,7 +27,7 @@ public class Level : MonoBehaviour
 
         if(GetLevel() > level)
         {
-            GetComponent<Health>().ResetHealth();
+            onLevelUp.Invoke();
         }
     }
 
