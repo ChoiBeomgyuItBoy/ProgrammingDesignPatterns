@@ -5,6 +5,21 @@ public interface IAbility
     void Use(GameObject currentGameObject);
 }
 
+public class DelayedDecorator : IAbility
+{
+    private IAbility wrappedAbility;
+
+    public DelayedDecorator(IAbility wrappedAbility)
+    {
+        this.wrappedAbility = wrappedAbility;
+    }
+
+    public void Use(GameObject currentGameObject)
+    {
+        wrappedAbility.Use(currentGameObject);
+    }
+}
+
 public class RageAbility : IAbility
 {
     public void Use(GameObject currentGameObject)
@@ -31,7 +46,7 @@ public class HealAbility : IAbility
 
 public class AbilityRunner : MonoBehaviour
 {
-    [SerializeField] IAbility currentAbility = new RageAbility();
+    [SerializeField] IAbility currentAbility = new DelayedDecorator(new RageAbility());
 
     public void UseAbility()
     {
