@@ -37,4 +37,9 @@ public class AbilityRunner : MonoBehaviour
     {
         currentAbility?.Use(gameObject);
     }
+
+    private void Start()
+    {
+        UseAbility();
+    }
 }

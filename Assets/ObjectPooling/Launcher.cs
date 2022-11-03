@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -15,7 +14,7 @@ public class Launcher : MonoBehaviour
             CreateBullet,
             OnGet,
             OnRelease,
-            OnDestroy,
+            OnDestroyBullet,
             maxSize: 5
         );
     }
@@ -48,7 +47,7 @@ public class Launcher : MonoBehaviour
         bullet.gameObject.SetActive(false);
     }
 
-    private void OnDestroy(Bullet bullet)
+    private void OnDestroyBullet(Bullet bullet)
     {
         Destroy(bullet.gameObject);
     }
