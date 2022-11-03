@@ -5,6 +5,24 @@ public interface IAbility
     void Use(GameObject currentGameObject);
 }
 
+public class SequenceComposite : IAbility
+{
+    private IAbility[] children;
+
+    public SequenceComposite(IAbility[] children)
+    {
+        this.children = children;
+    }
+
+    public void Use(GameObject currentGameObject)
+    {
+        foreach(var child in children)
+        {
+            child.Use(currentGameObject);
+        }
+    }
+}
+
 public class DelayedDecorator : IAbility
 {
     private IAbility wrappedAbility;
@@ -46,7 +64,16 @@ public class HealAbility : IAbility
 
 public class AbilityRunner : MonoBehaviour
 {
-    [SerializeField] IAbility currentAbility = new DelayedDecorator(new RageAbility());
+    [SerializeField] IAbility currentAbility = 
+        new SequenceComposite
+        (
+            new IAbility[] 
+            { 
+                new HealAbility(), 
+                new RageAbility(),
+                new DelayedDecorator(new FireAbility())
+            }
+        );
 
     public void UseAbility()
     {
