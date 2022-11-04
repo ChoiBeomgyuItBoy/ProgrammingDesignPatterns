@@ -1,10 +1,13 @@
-using System.Collections;
-using UnityEngine.Events;
+using TMPro;
+using UnityEngine.UI;
 using UnityEngine;
 using System;
 
 public class Level : MonoBehaviour
 {
+    [SerializeField] TMP_Text displayText;
+    [SerializeField] TMP_Text experienceText;
+    [SerializeField] Button increaseXPButton;
 
     [SerializeField] int pointsPerLevel = 200;
 
@@ -12,20 +15,20 @@ public class Level : MonoBehaviour
 
     int experiencePoints = 0;
 
-    IEnumerator Start()
+    void Start()
     {
-        while(true)
-        {
-            yield return new WaitForSeconds(0.2f);
-            GainExperience(10);
-        }
+        UpdateUI();
+
+        increaseXPButton.onClick.AddListener(() => GainExperience(10));
     }
 
-    public void GainExperience(int points)
+    void GainExperience(int points)
     {
         int level = GetLevel();
 
         experiencePoints += points;
+
+        UpdateUI();
 
         if(GetLevel() > level)
         {
@@ -41,5 +44,11 @@ public class Level : MonoBehaviour
     public int GetLevel()
     {
         return experiencePoints / pointsPerLevel;
+    }
+
+    void UpdateUI()
+    {
+        displayText.text = $"Level: {GetLevel()}";
+        experienceText.text = $"XP: {experiencePoints}";
     }
 }

@@ -1,8 +1,10 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
+    [SerializeField] Slider healthBar;
     [SerializeField] float maxHealth = 100f;
     [SerializeField] float drainPerSecond = 2f;
 
@@ -10,6 +12,8 @@ public class Health : MonoBehaviour
 
     void Awake()
     {
+        healthBar.value = maxHealth;
+
         ResetHealth();
         StartCoroutine(HealthDrain());
     }
@@ -39,7 +43,15 @@ public class Health : MonoBehaviour
         while(currentHealth > 0)
         {
             currentHealth -= drainPerSecond;
+
+            UpdateUI();
+
             yield return new WaitForSeconds(1);
         }
+    }
+
+    void UpdateUI()
+    {
+        healthBar.value = currentHealth / maxHealth;
     }
 }
