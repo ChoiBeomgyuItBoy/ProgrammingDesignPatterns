@@ -1,29 +1,28 @@
+using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] Slider healthBar;
-    [SerializeField] float maxHealth = 100f;
-    [SerializeField] float drainPerSecond = 2f;
+    [SerializeField] private float fullHealth = 100f;
+    [SerializeField] private float drainPerSecond = 2f;
 
-    float currentHealth = 0;
+    public event Action onHealthChange;
 
-    void Awake()
+    private float currentHealth = 0;
+
+    private void Awake()
     {
-        healthBar.value = maxHealth;
-
         ResetHealth();
         StartCoroutine(HealthDrain());
     }
 
-    void OnEnable()
+    private void OnEnable()
     {
         GetComponent<Level>().onLevelUpAction += ResetHealth;
     }
 
-    void OnDisable()
+    private void OnDisable()
     {
         GetComponent<Level>().onLevelUpAction -= ResetHealth;
     }
@@ -33,25 +32,25 @@ public class Health : MonoBehaviour
         return currentHealth;
     }
 
-    void ResetHealth()
+    public float GetFullHealth()
     {
-        currentHealth = maxHealth;
+        return fullHealth;
     }
 
-    IEnumerator HealthDrain()
+    private void ResetHealth()
+    {
+        currentHealth = fullHealth;
+    }
+
+    private IEnumerator HealthDrain()
     {
         while(currentHealth > 0)
         {
             currentHealth -= drainPerSecond;
 
-            UpdateUI();
+            onHealthChange?.Invoke();
 
             yield return new WaitForSeconds(1);
         }
-    }
-
-    void UpdateUI()
-    {
-        healthBar.value = currentHealth / maxHealth;
     }
 }
